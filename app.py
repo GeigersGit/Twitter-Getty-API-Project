@@ -37,7 +37,6 @@ def index():
     )
     response = requests.get(url, auth=oauth)
     json_body = response.json()
-    
     a = random.randint(0,14)
     quote = json_body["statuses"][a]["text"]
     author = json_body["statuses"][a]["user"]["screen_name"]
