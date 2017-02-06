@@ -16,15 +16,15 @@ def index():
     
     #GETTY IMAGES API REQUEST
 
-    url = "https://api.gettyimages.com/v3/search/images?fields=id,title,thumb,referral_destinations&minimum_size=xx_large&phrase=potato"
+    url = "https://api.gettyimages.com:443/v3/search/images?age_of_people=newborn%2Cbaby&exclude_nudity=true&graphical_styles=photography&license_models=royaltyfree&minimum_size=xx_large&number_of_people=one%2Ctwo%2Cgroup&orientations=Horizontal&page_size=100"
     my_headers = {"Api-Key": "p8tv85a2dut7fa3vw6juh9fm"}
     response = requests.get(url, headers=my_headers)
     json_body = response.json()
-    imageurl = json_body["images"][random.randint(0,15)]["display_sizes"][0]["uri"]
+    imageurl = json_body["images"][random.randint(0,99)]["display_sizes"][0]["uri"]
 
 
     #TWITTER QUOTE API REQUEST
-    url = "https://api.twitter.com/1.1/search/tweets.json?q=potato&src=typd"
+    url = "https://api.twitter.com/1.1/search/tweets.json?q=from%3ArealDonaldTrump"
     oauth = requests_oauthlib.OAuth1(
         #API_Key
         "HmAQZ9EBVNJxPY7Ix9tgyEdGl", 
@@ -37,6 +37,9 @@ def index():
     )
     response = requests.get(url, auth=oauth)
     json_body = response.json()
+    print "START OF JSON"
+    print json_body
+    print "END OF JSON"
     a = random.randint(0,14)
     quote = json_body["statuses"][a]["text"]
     author = json_body["statuses"][a]["user"]["screen_name"]
