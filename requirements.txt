@@ -1,0 +1,5 @@
+Flask
+requests
+json
+requests_oauthlib
+os
