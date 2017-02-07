@@ -18,7 +18,7 @@ def index():
     #GETTY IMAGES API REQUEST
 
     url = "https://api.gettyimages.com:443/v3/search/images?age_of_people=newborn%2Cbaby&exclude_nudity=true&graphical_styles=photography&license_models=royaltyfree&minimum_size=xx_large&number_of_people=one%2Ctwo%2Cgroup&orientations=Horizontal&page_size=100"
-    my_headers = {"Api-Key": "p8tv85a2dut7fa3vw6juh9fm"}
+    my_headers = {"Api-Key": os.getenv("gettyapikey")}
     response = requests.get(url, headers=my_headers)
     json_body = response.json()
     imageurl = json_body["images"][random.randint(0,99)]["display_sizes"][0]["uri"]
