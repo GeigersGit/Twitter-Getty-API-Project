@@ -4,6 +4,8 @@ import random
 import requests
 import json
 import requests_oauthlib
+from boto.s3.connection import S3Connection
+
 
 app = flask.Flask(__name__)
 
@@ -25,21 +27,28 @@ def index():
 
     #TWITTER QUOTE API REQUEST
     url = "https://api.twitter.com/1.1/search/tweets.json?q=from%3ArealDonaldTrump"
-    oauth = requests_oauthlib.OAuth1(
+    
+    #oauth = requests_oauthlib.OAuth1(
         #API_Key
-        "HmAQZ9EBVNJxPY7Ix9tgyEdGl", 
+      #  "HmAQZ9EBVNJxPY7Ix9tgyEdGl", 
         #Api_secret
-        "kV4m5MQdXLIepcMXtDihkVdidpezTVC9ICS4A2uOIieXzpB272",
+     #   "kV4m5MQdXLIepcMXtDihkVdidpezTVC9ICS4A2uOIieXzpB272",
         #Access_token
-        "774699185442398208-HnzGYRAnayy1fkg2j46rHMVUHK23M97",
+      #  "774699185442398208-HnzGYRAnayy1fkg2j46rHMVUHK23M97",
         #Access_secret
-        "g62tViAWZzMMsk2NOCu0Y2qnUaf07Tojmb6PEphjq0uLR"
-    )
+       # "g62tViAWZzMMsk2NOCu0Y2qnUaf07Tojmb6PEphjq0uLR"
+    #)
+    
+    oauth = requests_oauthlib.OAuth1(
+        os.environ['twitterapikey'],
+        os.environ['twitterapisecret'],
+        os.environ['twitteraccesstoken'],
+        os.environ['twitteraccesssecret']
+        )
+    
     response = requests.get(url, auth=oauth)
     json_body = response.json()
-    print "START OF JSON"
-    print json_body
-    print "END OF JSON"
+    
     a = random.randint(0,14)
     quote = json_body["statuses"][a]["text"]
     author = json_body["statuses"][a]["user"]["screen_name"]
