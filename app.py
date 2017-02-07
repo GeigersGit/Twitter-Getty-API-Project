@@ -4,7 +4,6 @@ import random
 import requests
 import json
 import requests_oauthlib
-from boto.s3.connection import S3Connection
 
 
 app = flask.Flask(__name__)
@@ -40,10 +39,10 @@ def index():
     #)
     
     oauth = requests_oauthlib.OAuth1(
-        os.environ["twitterapikey"],
-        os.environ["twitterapisecret"],
-        os.environ["twitteraccesstoken"],
-        os.environ["twitteraccesssecret"]
+        os.getenv("twitterapikey"),
+        os.getenv("twitterapisecret"),
+        os.getenv("twitteraccesstoken"),
+        os.getenv("twitteraccesssecret")
         )
     
     response = requests.get(url, auth=oauth)
