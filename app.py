@@ -40,10 +40,10 @@ def index():
     #)
     
     oauth = requests_oauthlib.OAuth1(
-        os.environ['twitterapikey'],
-        os.environ['twitterapisecret'],
-        os.environ['twitteraccesstoken'],
-        os.environ['twitteraccesssecret']
+        os.environ["twitterapikey"],
+        os.environ["twitterapisecret"],
+        os.environ["twitteraccesstoken"],
+        os.environ["twitteraccesssecret"]
         )
     
     response = requests.get(url, auth=oauth)
