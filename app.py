@@ -27,17 +27,6 @@ def index():
     #TWITTER QUOTE API REQUEST
     url = "https://api.twitter.com/1.1/search/tweets.json?q=from%3ArealDonaldTrump"
     
-    #oauth = requests_oauthlib.OAuth1(
-        #API_Key
-      #  "HmAQZ9EBVNJxPY7Ix9tgyEdGl", 
-        #Api_secret
-     #   "kV4m5MQdXLIepcMXtDihkVdidpezTVC9ICS4A2uOIieXzpB272",
-        #Access_token
-      #  "774699185442398208-HnzGYRAnayy1fkg2j46rHMVUHK23M97",
-        #Access_secret
-       # "g62tViAWZzMMsk2NOCu0Y2qnUaf07Tojmb6PEphjq0uLR"
-    #)
-    
     oauth = requests_oauthlib.OAuth1(
         os.getenv("twitterapikey"),
         os.getenv("twitterapisecret"),
@@ -64,9 +53,3 @@ app.run(
     port=int(os.getenv('PORT',8080)),
     host=os.getenv('IP','0.0.0.0')
 )
-
-#https://api.gettyimages.com/v3/search/images?fields=id,title,thumb,referral_destinations&sort_order=best&phrase=space
-#p8tv85a2dut7fa3vw6juh9fm
-
-#add json to requirements.txt
-#add requests_oauthlib to requirements.txt
